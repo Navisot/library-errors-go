@@ -2,6 +2,13 @@ package RestErrors
 
 import "net/http"
 
+const (
+	badRequest = "BAD_REQUEST"
+	notFound = "NOT_FOUND"
+	internalServerError = "INTERNAL_SERVER_ERROR"
+	validationError = "VALIDATION_ERROR"
+)
+
 type RestErr struct {
 	Message string `json:"message"`
 	Error   string `json:"error"`
@@ -11,7 +18,7 @@ type RestErr struct {
 func BadRequestError(message string) *RestErr {
 	return &RestErr{
 		Message: message,
-		Error:   "BAD_REQUEST",
+		Error:   badRequest,
 		Status:  http.StatusBadRequest,
 	}
 }
@@ -19,7 +26,7 @@ func BadRequestError(message string) *RestErr {
 func NotFoundError(message string) *RestErr {
 	return &RestErr{
 		Message: message,
-		Error:   "NOT_FOUND",
+		Error:   notFound,
 		Status:  http.StatusNotFound,
 	}
 }
@@ -27,7 +34,7 @@ func NotFoundError(message string) *RestErr {
 func InternalServerError(message string) *RestErr {
 	return &RestErr{
 		Message: message,
-		Error:   "INTERNAL_SERVER_ERROR",
+		Error:   internalServerError,
 		Status:  http.StatusInternalServerError,
 	}
 }
@@ -35,7 +42,7 @@ func InternalServerError(message string) *RestErr {
 func ValidationError(message string) *RestErr {
 	return &RestErr{
 		Message: message,
-		Error:   "VALIDATION_ERROR",
+		Error:   validationError,
 		Status:  http.StatusBadRequest,
 	}
 }
